@@ -79,6 +79,6 @@ bool Student::remove() {
 }
 
 void Student::printInfo() const {
-    std::cout << "Студент: " << getFirstName() << " " << getLastName()
-        << " (Email: " << getEmail() << ", StudentID: " << studentId << ")" << std::endl;
+    std::cout << "Student: " << getFirstName() << " " << getLastName()
+        << " (Email: " << getEmail() << ", Student ID: " << studentId << ")" << std::endl;
 }

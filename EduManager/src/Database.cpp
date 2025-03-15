@@ -12,7 +12,7 @@ Database::Database() {
     std::string dbPassword = getEnv("DB_PASSWORD");
 
     if (dbName.empty() || dbUser.empty() || dbPassword.empty()) {
-        throw std::runtime_error("Ошибка: Пустые переменные окружения для подключения к БД!");
+        throw std::runtime_error("Error: Empty environment variables for connecting to the database");
     }
 
     std::string connStr = "dbname=" + dbName +
@@ -22,15 +22,15 @@ Database::Database() {
 
     conn = PQconnectdb(connStr.c_str());
     if (PQstatus(conn) != CONNECTION_OK) {
-        std::cerr << "Ошибка подключения к БД: " << PQerrorMessage(conn) << std::endl;
+        std::cerr << "Error connecting to the database: " << PQerrorMessage(conn) << std::endl;
         exit(EXIT_FAILURE);
     }
 
     if (PQsetClientEncoding(conn, "UTF8") != 0) {
-        std::cerr << "Ошибка установки кодировки UTF8: " << PQerrorMessage(conn) << std::endl;
+        std::cerr << "Error in setting UTF8 encoding: " << PQerrorMessage(conn) << std::endl;
     }
 
-    std::cout << "Подключение к БД успешно!" << std::endl;
+    std::cout << "Connection to the database is successful" << std::endl;
 }
 
 Database& Database::getInstance() {
@@ -40,7 +40,7 @@ Database& Database::getInstance() {
 
 PGconn* Database::getConnection() {
     if (conn == nullptr) {
-        throw std::runtime_error("Ошибка: соединение с БД не установлено!");
+        throw std::runtime_error("Error: connection to the database is not established");
     }
     return conn;
 }
@@ -48,7 +48,7 @@ PGconn* Database::getConnection() {
 void Database::executeSQLFile(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Ошибка: не удалось открыть файл " << filename << std::endl;
+        std::cerr << "Error: couldn't open the file " << filename << std::endl;
         return;
     }
 
@@ -57,18 +57,18 @@ void Database::executeSQLFile(const std::string& filename) {
     std::string sqlQuery = sqlStream.str();
 
     if (sqlQuery.empty()) {
-        std::cerr << "SQL-файл пуст! Проверьте содержимое " << filename << std::endl;
+        std::cerr << "The SQL file is empty. Check the contents " << filename << std::endl;
         return;
     }
 
     PGresult* res = PQexec(conn, sqlQuery.c_str());
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        std::cerr << "Ошибка выполнения SQL: " << PQerrorMessage(conn) << std::endl;
+        std::cerr << "SQL execution error: " << PQerrorMessage(conn) << std::endl;
         PQclear(res);
         return;
     }
 
-    std::cout << "База данных успешно инициализирована!" << std::endl;
+    std::cout << "The database has been initialized successfully" << std::endl;
     PQclear(res);
 }
 

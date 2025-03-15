@@ -50,5 +50,5 @@ bool Enrollment::remove() {
 }
 
 void Enrollment::printInfo() const {
-    std::cout << "Запись: Студент ID " << studentId << " на курс ID " << courseId << std::endl;
+    std::cout << "Student ID " << studentId << " Course ID " << courseId << std::endl;
 }

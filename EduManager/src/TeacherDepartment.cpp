@@ -61,5 +61,5 @@ bool TeacherDepartment::remove() {
 }
 
 void TeacherDepartment::printInfo() const {
-    std::cout << "Преподаватель ID " << teacherId << " на кафедре ID " << departmentId << std::endl;
+    std::cout << "Teacher ID " << teacherId << " Department ID " << departmentId << std::endl;
 }

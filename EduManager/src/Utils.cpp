@@ -10,7 +10,7 @@ std::unordered_map<std::string, std::string> envMap;
 void loadEnv() {
     std::ifstream file(".env");
     if (!file) {
-        std::cerr << "Ошибка: .env не найден!" << std::endl;
+        std::cerr << "Error: .env not found" << std::endl;
         return;
     }
     std::string line;
@@ -31,7 +31,7 @@ std::string getEnv(const std::string& key) {
         loadEnv();
     }
     if (envMap.find(key) == envMap.end()) {
-        std::cerr << "Переменная " << key << " не найдена в .env!" << std::endl;
+        std::cerr << "The variable " << key << " was not found in .env" << std::endl;
         return "";
     }
     std::string value = envMap[key];

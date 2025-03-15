@@ -81,5 +81,5 @@ bool Department::remove() {
 }
 
 void Department::printInfo() const {
-    std::cout << "Кафедра: " << name << " (ID: " << id << ", Факультет ID: " << facultyId << ")" << std::endl;
+    std::cout << "Department: " << name << " (ID: " << id << ", Faculty ID: " << facultyId << ")" << std::endl;
 }

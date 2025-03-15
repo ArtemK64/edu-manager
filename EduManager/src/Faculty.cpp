@@ -77,5 +77,5 @@ bool Faculty::remove() {
 }
 
 void Faculty::printInfo() const {
-    std::cout << "Факультет: " << name << " (ID: " << id << ")" << std::endl;
+    std::cout << "Faculty: " << name << " (ID: " << id << ")" << std::endl;
 }

@@ -87,6 +87,6 @@ bool Grade::remove() {
 }
 
 void Grade::printInfo() const {
-    std::cout << "Оценка: Студент ID " << studentId << " на курс ID " << courseId
-        << " - Оценка: " << value << " Тип: " << gradeType << std::endl;
+    std::cout << "Grade: Student ID " << studentId << " Course ID " << courseId
+        << " - Value: " << value << " Grade Type: " << gradeType << std::endl;
 }

@@ -62,7 +62,7 @@ int Person::createInPeople() {
     }
 
     if (PQntuples(res) == 0) {
-        Logger::logError("Ошибка: не удалось получить ID из people.");
+        Logger::logError("Error: couldn't get ID from People");
         PQclear(res);
         return -1;
     }
@@ -111,7 +111,7 @@ bool Person::removeInPeople() {
 
     PGresult* res = PQexecParams(conn, query, 1, nullptr, paramValues, nullptr, nullptr, 0);
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        Logger::logError("Ошибка SQL при удалении: " + std::string(PQerrorMessage(conn)));
+        Logger::logError("SQL error: " + std::string(PQerrorMessage(conn)));
         PQclear(res);
         return false;
     }
